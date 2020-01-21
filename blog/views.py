@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Post
 
 #def name():
 #	return "Christian's"
@@ -13,26 +13,10 @@ from django.http import HttpResponse
 #def about (recuest):
 #	return HttpResponse (putin_h1("{} Blog About".format(name())))
 
-posts =[
-
-{
-'author': 'Christian',
-'title':  "Christian's Blog Post 1",
-'content': 'First post content',
-'date_posted': 'Dezember 2019'
-},
-{
-'author': 'Christian 2',
-'title':  "Christian's Blog Post 2",
-'content': 'Second post content',
-'date_posted': 'Januar 2020',
-}
-]
-
 
 def home(request):
 	context = {
-		'posts': posts
+		'posts': Post.objects.all()
 	}
 	return render (request, 'blog/home.html', context)
 
